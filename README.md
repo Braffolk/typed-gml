@@ -37,7 +37,7 @@ Struct = function(_entity, _vector) constructor {
 }
 ```
 
-To typify a struct constructor wrap it into typify or call the typify inside the constructor passing self (the constructor context) to the function. This will store the constructor into a global lookup map which is used to check whether the type of a struct instance was created using a constructor or not.
+To typify a struct constructor wrap it into typify or call the typify inside the constructor passing self (the constructor context) to the function. The latter should be stored in a static variable so that the struct is only typified once. This will store the constructor into a global lookup map which is used to check whether the type of a struct instance was created using a constructor or not.
 
 To assert types for a method simply call assert_types and pass in arguments of lists, where the first index is the instance of a struct and the second is the struct constructor.
 

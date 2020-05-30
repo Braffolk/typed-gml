@@ -6,7 +6,7 @@
     "path": "folders/Scripts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "typify_tests",
+  "name": "example_structs",
   "tags": [],
   "resourceType": "GMScript",
 }

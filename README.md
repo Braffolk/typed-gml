@@ -31,8 +31,14 @@ Struct = function(_entity, _vector) constructor {
 	
 	entity = _entity
 	vector = _vector
+	
 	static get_entity = function() {
 		return entity
+	}
+	
+	static set_entity = function(_entity) {
+		assert_types([_entity, Entity])
+		entity = _entity
 	}
 }
 ```

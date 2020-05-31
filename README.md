@@ -10,7 +10,7 @@ Supported type checks:
 ## When and why to use?
 Type checking gets rid of the worst bugs by stopping any buggy code right where the bug occurs. For example if you made a typo in your code some days ago and have been working on unrelated things, but then find an undefined variable showing up in a random place, there is no simple way to know what caused it. Many functions handle undefined values just fine (e.g. a list, grid set instead of a multiplication) and the source of a bug can hence be hard to track down.
 
-The aim of Typed GML is to solve that by letting the programmer assert inputs and outputs. This is especially useful when dealing with unknown data, large data pipelines, networking or any other complex example. For release mode, type assertions can be turned off by modifying a global macro.
+The aim of Typed GML is to solve that by letting the programmer assert inputs and outputs. This is especially useful when dealing with unknown data, large data pipelines, networking or any other more complex application. For release mode, type assertions can be turned off by modifying a global macro.
 
 
 ### Example Usage

@@ -64,6 +64,8 @@ Struct = function(_entity, _vector) constructor {
 ## Performance
 The project has performance and unit tests. These were run on a mac and performance may differ between platforms. If someone has another platform to test this on and send the results as an issue, it would be helpful.
 
+Type assertions can be turned off via a macro for release mode.
+
 ```
 RUNNING PERFORMANCE TESTS 
 TEST: assert a real variable running 10000 times 

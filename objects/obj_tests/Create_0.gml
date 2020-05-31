@@ -3,16 +3,6 @@
 
 log("@@@@")
 
-var a = array_create(1, 5)
-
-log(is_struct(is_undefined))
-log(is_method(is_undefined))
-
-log(is_struct(Struct))
-log(is_method(Struct))
-
-log(asset_get_type(is_undefined))
-log((obj_tests))
 
 
 
@@ -63,6 +53,26 @@ var tests = [
 		false, 
 		"stopped wrong struct type from being passed to a struct method.", 
 		"couldn't stop wrong struct type from being passed to a struct method."
+	],
+	[
+		function() {
+			var o = instance_create_depth(0, 0, 0, obj_simple);
+			var _struct = new SimpleStorer(o);
+			
+		}, 
+		true, 
+		"correct instance passed through SimpleStorer.", 
+		"failed to pass correct instance through SimpleStorer."
+	],
+	[
+		function() {
+			var o = instance_create_depth(0, 0, 0, obj_2);
+			var _struct = new SimpleStorer(o);
+			
+		}, 
+		false, 
+		"stopped wrong instance from being passed to SimpleStorer.", 
+		"type assertion couldn't stop wrong instance from being passed to SimpleStorer."
 	]
 ];
 
@@ -85,9 +95,9 @@ for(var i = 0; i < array_length(tests); i++){
 		}
 	} catch( _ex) {
 		if(_error_not_expected) {
-			log("FAILURE:", _failure_message, string(_ex))
+			log("FAILURE:", _failure_message, "exception:", string(_ex))
 		} else {
-			log("SUCCESS:", _success_message, string(_ex))
+			log("SUCCESS:", _success_message, "exception:", string(_ex))
 			successful_tests += 1;
 		}
 	}

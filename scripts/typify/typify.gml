@@ -1,24 +1,19 @@
 global.__type_increasing_id = 0;
-global.__struct_index_lookup = ds_grid_create(1000, 1);
+global.__struct_id_lookup = ds_grid_create(1000, 1);
 
-/*
-is_string
-is_real
-is_numeric
-is_bool
-is_array
-is_struct
-is_method
-is_ptr
-is_int32
-is_int64
-is_vec3
-is_vec4
-is_matrix
-is_undefined
-is_nan
-is_infinity
-*/
+
+function is_instance_of(_instance, _object_index) {
+	if(!is_undefined(_instance)) {
+		with(_instance) {
+			return object_index == _object_index;
+		}
+	} else {
+		//on mac throw stops the run without any error, so right now false is returned instead of throwing the error.
+		//throw(string(_instance) + " instance does not exist, checked for object_index " + string(_object_index))
+		return false
+	}
+	return false
+}
 
 function typify(_constructor) {
 	/*log("typifying", "|",
@@ -32,33 +27,38 @@ function typify(_constructor) {
 	global.__type_increasing_id++;
 	
 	var _index = asset_get_index(instanceof(argument0)) - 100000;
-	if(ds_grid_width(global.__struct_index_lookup) < _index + 1) {
+	if(ds_grid_width(global.__struct_id_lookup) < _index + 1) {
 		ds_grid_resize(
-			global.__struct_index_lookup,
+			global.__struct_id_lookup,
 			_index + 1000,
-			ds_grid_height(global.__struct_index_lookup)
+			ds_grid_height(global.__struct_id_lookup)
 		)
 	}
 	
-	global.__struct_index_lookup[# _index, 0 ] = _unique_id;
+	global.__struct_id_lookup[# _index, 0 ] = _unique_id;
 	
 	return argument0;
 }
 
 
-function is(_struct, _type) {
+function is_struct_of_type(_struct, _type) {
 	var _index_struct = asset_get_index(instanceof(_struct)) - 100000;
 	var _index_type = (is_method(_type) ? method_get_index(_type) : _type) - 100000;
 	
-	return (global.__struct_index_lookup[# _index_struct, 0] == global.__struct_index_lookup[# _index_type, 0 ])
+	return (global.__struct_id_lookup[# _index_struct, 0] == global.__struct_id_lookup[# _index_type, 0 ])
 }
 
 
 function assert_types() {
 	for(var i = 0; i < argument_count; i++) {
-		var _tuple = argument[i];
-		if(!is(_tuple[0], _tuple[1])){
-			throw("Wrong type at argument" + string(i) + ", expected " + string(_tuple[1]));
+		if(is_array(argument[i])) {
+			var _tuple = argument[i];
+		
+			if(!is_struct_of_type(_tuple[0], _tuple[1])){
+				throw("Wrong struct type at argument " + string(i) + ", expected " + string(_tuple[1]));
+			}
+		} else if(argument[i] == false){
+			throw("Wrong type at argument " + string(i));
 		}
 	}
 }

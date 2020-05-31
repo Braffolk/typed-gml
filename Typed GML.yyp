@@ -1,8 +1,10 @@
 {
   "resources": [
     {"id":{"name":"typify","path":"scripts/typify/typify.yy",},"order":0,},
+    {"id":{"name":"obj_simple","path":"objects/obj_simple/obj_simple.yy",},"order":0,},
     {"id":{"name":"obj_tests","path":"objects/obj_tests/obj_tests.yy",},"order":2,},
     {"id":{"name":"utility","path":"scripts/utility/utility.yy",},"order":1,},
+    {"id":{"name":"obj_2","path":"objects/obj_2/obj_2.yy",},"order":1,},
     {"id":{"name":"example_structs","path":"scripts/example_structs/example_structs.yy",},"order":2,},
     {"id":{"name":"room0","path":"rooms/room0/room0.yy",},"order":0,},
   ],
@@ -25,6 +27,7 @@
   "Folders": [
     {"folderPath":"folders/Scripts.yy","order":0,"resourceVersion":"1.0","name":"Scripts","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Rooms.yy","order":1,"resourceVersion":"1.0","name":"Rooms","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/test_objects.yy","order":5,"resourceVersion":"1.0","name":"test_objects","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":461609314234257646,"resourceVersion":"1.0","name":"audiogroup_default","resourceType":"GMAudioGroup",},

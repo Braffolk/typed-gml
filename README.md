@@ -66,41 +66,42 @@ The project has performance and unit tests. These were run on a mac and performa
 
 Type assertions can be turned off via a macro for release mode.
 
+### Macbook Pro (2015), VM
 ```
 RUNNING PERFORMANCE TESTS 
 TEST: assert a real variable running 10000 times 
-0 took 23.65 microseconds per one run 
-1 took 29.72 microseconds per one run 
-extra time from type assertions:  6.07 microseconds per one assertion 
+0 took 31.83 microseconds per one run 
+1 took 46.56 microseconds per one run 
+extra time from type assertions:  14.73 microseconds per one run 
 
 TEST: assert 4 real type variables running 10000 times 
-0 took 20.39 microseconds per one run 
-1 took 28.95 microseconds per one run 
-extra time from type assertions:  8.55 microseconds per one assertion 
+0 took 31.64 microseconds per one run 
+1 took 59.73 microseconds per one run 
+extra time from type assertions:  28.08 microseconds per one run 
 
 TEST: assert a vec2 struct type running 10000 times 
-0 took 20.53 microseconds per one run 
-1 took 26.81 microseconds per one run 
-extra time from type assertions:  6.28 microseconds per one assertion 
+0 took 30.15 microseconds per one run 
+1 took 45.16 microseconds per one run 
+extra time from type assertions:  15.01 microseconds per one run 
 
 TEST: for comparison, a ds_grid lookup running 10000 times 
-0 took 0.73 microseconds per one run 
+0 took 0.76 microseconds per one run 
+
+TEST: for comparison, a ds_map_create and destroy running 10000 times 
+0 took 4.80 microseconds per one run 
+
+TEST: for comparison, an instance_create and destroy running 10000 times 
+0 took 17.62 microseconds per one run 
 
 TEST: for comparison, a ds_map lookup running 10000 times 
-0 took 0.70 microseconds per one run 
+0 took 0.94 microseconds per one run 
 
 TEST: for comparison, a ds_grid write running 10000 times 
-0 took 0.74 microseconds per one run 
+0 took 0.18 microseconds per one run 
 
 TEST: for comparison, a ds_map write running 10000 times 
-0 took 0.54 microseconds per one run 
-
-TEST: for comparison, array read without accessor running 10000 times 
-0 took 0.38 microseconds per one run 
-
-TEST: for comparison, array read with accessor running 10000 times 
-0 took 0.46 microseconds per one run 
+0 took 0.89 microseconds per one run 
 
 TEST: for comparison, an anonymous function call running 10000 times 
-0 took 0.63 microseconds per one run 
+0 took 0.89 microseconds per one run 
 ```

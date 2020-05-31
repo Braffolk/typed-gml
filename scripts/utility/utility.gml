@@ -9,13 +9,13 @@ function log() {
 
 
 function PerformanceTest(_title, _methods) constructor {
-	assert_types(is_string(_title), is_array_of(_methods, is_method));
+	assert_types(t_string(_title), t_array_of(_methods, is_method));
 	
 	title	= _title;
 	methods	= _methods;
 	
 	static run = function(_steps) {
-		assert_types(is_real(_steps))
+		assert_types(t_real(_steps))
 		
 		var _results = array_create(array_length(methods), 0);
 		

@@ -66,41 +66,47 @@ The project has performance and unit tests. These were run on a mac and performa
 
 Type assertions can be turned off via a macro for release mode.
 
+### Mac, VM (Macbook Pro 2015)
 ```
 RUNNING PERFORMANCE TESTS 
-TEST: assert a real variable running 10000 times 
-0 took 23.65 microseconds per one run 
-1 took 29.72 microseconds per one run 
-extra time from type assertions:  6.07 microseconds per one assertion 
+TEST: assert a real variable running 100000 times 
+0 took 251.53 microseconds per one run 
+1 took 260.75 microseconds per one run 
+extra time from type assertions:  9.22 microseconds per one run 
 
-TEST: assert 4 real type variables running 10000 times 
-0 took 20.39 microseconds per one run 
-1 took 28.95 microseconds per one run 
-extra time from type assertions:  8.55 microseconds per one assertion 
+TEST: assert 4 real type variables running 100000 times 
+0 took 237.11 microseconds per one run 
+1 took 255.37 microseconds per one run 
+extra time from type assertions:  18.27 microseconds per one run 
 
-TEST: assert a vec2 struct type running 10000 times 
-0 took 20.53 microseconds per one run 
-1 took 26.81 microseconds per one run 
-extra time from type assertions:  6.28 microseconds per one assertion 
+TEST: assert 16 real type variables running 100000 times 
+0 took 249.86 microseconds per one run 
+1 took 308.17 microseconds per one run 
+extra time from type assertions:  58.30 microseconds per one run 
 
-TEST: for comparison, a ds_grid lookup running 10000 times 
-0 took 0.73 microseconds per one run 
+TEST: assert a vec2 struct type running 100000 times 
+0 took 256.12 microseconds per one run 
+1 took 277.68 microseconds per one run 
+extra time from type assertions:  21.56 microseconds per one run 
 
-TEST: for comparison, a ds_map lookup running 10000 times 
-0 took 0.70 microseconds per one run 
+TEST: for comparison, a ds_grid lookup running 100000 times 
+0 took 0.72 microseconds per one run 
 
-TEST: for comparison, a ds_grid write running 10000 times 
-0 took 0.74 microseconds per one run 
+TEST: for comparison, a ds_map_create and destroy running 100000 times 
+0 took 3.83 microseconds per one run 
 
-TEST: for comparison, a ds_map write running 10000 times 
-0 took 0.54 microseconds per one run 
+TEST: for comparison, an instance_create and destroy running 100000 times 
+0 took 146.73 microseconds per one run 
 
-TEST: for comparison, array read without accessor running 10000 times 
-0 took 0.38 microseconds per one run 
+TEST: for comparison, a ds_map lookup running 100000 times 
+0 took 0.55 microseconds per one run 
 
-TEST: for comparison, array read with accessor running 10000 times 
-0 took 0.46 microseconds per one run 
+TEST: for comparison, a ds_grid write running 100000 times 
+0 took 0.20 microseconds per one run 
 
-TEST: for comparison, an anonymous function call running 10000 times 
-0 took 0.63 microseconds per one run 
+TEST: for comparison, a ds_map write running 100000 times 
+0 took 0.64 microseconds per one run 
+
+TEST: for comparison, an anonymous function call running 100000 times 
+0 took 0.83 microseconds per one run 
 ```

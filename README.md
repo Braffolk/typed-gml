@@ -64,7 +64,7 @@ var _struct = new Struct(new Entity("name"), new Vec2(0.0, 0.0));
 var _struct = new Struct(new Entity("name"), new Entity("name"));
 ```
 
-To typify a struct constructor wrap it into typify or call the typify inside the constructor passing self (the constructor context) to the function. The latter should be stored in a static variable so that the struct is only typified once. This will store the constructor into a global lookup map which is used to check whether the type of a struct instance was created using a constructor or not.
+To typify a struct constructor call the typify inside the constructor passing self (the constructor context) to the function. The typify return value should be stored in a static variable so that the struct is only typified once. This will store the constructor index into a global lookup ds_grid which is used to check whether the type of a struct instance was created using a constructor or not.
 
 
 

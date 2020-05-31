@@ -2,9 +2,9 @@
 Typed GML is an attempt to add typed functions, constructors and methods in the new Game Maker Studio 2.3 beta.
 
 Supported type checks:
-* check if a struct came from a specific constructor
-* instance object_index checks
-* all is_ functions (is_real, is_array, is_string etc)
+* check if a struct came from a specific constructor (t_constructor_of)
+* instance object_index checks (t_instance_of)
+* all built in types functions (real, array, string, numeric, method etc) 
 
 
 ## When and why to use?
@@ -17,26 +17,26 @@ The aim of Typed GML is to solve that by letting the programmer assert inputs an
 ```JavaScript
 globalvar Entity;
 Entity = function(_name, _instance) constructor {
-	assert_types(is_string(_name));
+	assert_types(t_string(_name));
 	
 	name = _name;
 	instance = _instance;
 }
 
 function SimpleStorer(_instance) constructor {
-	assert_types(is_instance_of(_instance, obj_simple));
+	assert_types(t_instance_of(_instance, obj_simple));
 	
 	instance = _instance
 }
 
 function Vec2(_x, _y) constructor {
-	assert_types(is_real(_x), is_real(_y));
+	assert_types(t_real(_x), t_real(_y));
 	
 	x = _x;
 	y = _y;
 	
 	static Add = function( _other ){
-		assert_types([_other, self]);
+		assert_types(t_struct_of(_other, self));
 		
 		x += _other.x;
 		y += _other.y;
@@ -45,7 +45,7 @@ function Vec2(_x, _y) constructor {
 
 globalvar Struct;
 Struct = function(_entity, _vector) constructor {
-	assert_types([_entity, Entity], [_vector, Vec2]);
+	assert_types(t_struct_of(_entity, Entity), t_struct_of(_vector, Vec2));
 	
 	entity = _entity;
 	vector = _vector;
@@ -55,16 +55,10 @@ Struct = function(_entity, _vector) constructor {
 	}
 	
 	static set_entity = function(_entity) {
-		assert_types([_entity, Entity]);
+		assert_types(t_struct_of(_entity, Entity));
 		entity = _entity;
 	}
 }
-
-// Successful
-var _struct = new Struct(new Entity("name"), new Vec2(0.0, 0.0));
-
-// Will throw a type error
-var _struct = new Struct(new Entity("name"), new Entity("name"));
 ```
 
 ## Performance

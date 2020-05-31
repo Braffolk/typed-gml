@@ -10,7 +10,6 @@ An example usage:
 ```JavaScript
 globalvar Entity;
 Entity = function(_name, _instance) constructor {
-	static _ = typify(self);
 	assert_types(is_string(_name));
 	
 	name = _name;
@@ -18,14 +17,12 @@ Entity = function(_name, _instance) constructor {
 }
 
 function SimpleStorer(_instance) constructor {
-	static _ = typify(self);
 	assert_types(is_instance_of(_instance, obj_simple));
 	
 	instance = _instance
 }
 
 function Vec2(_x, _y) constructor {
-	static _ = typify(self);
 	assert_types(is_real(_x), is_real(_y));
 	
 	x = _x;
@@ -41,7 +38,6 @@ function Vec2(_x, _y) constructor {
 
 globalvar Struct;
 Struct = function(_entity, _vector) constructor {
-	static _ = typify(self);
 	assert_types([_entity, Entity], [_vector, Vec2]);
 	
 	entity = _entity;
@@ -64,9 +60,3 @@ var _struct = new Struct(new Entity("name"), new Vec2(0.0, 0.0));
 var _struct = new Struct(new Entity("name"), new Entity("name"));
 ```
 
-To typify a struct constructor call the typify inside the constructor passing self (the constructor context) to the function. The typify return value should be stored in a static variable so that the struct is only typified once. This will store the constructor index into a global lookup ds_grid which is used to check whether the type of a struct instance was created using a constructor or not.
-
-
-
-# Known Issues
-* Only struct initialised in a script can be used right now, struct constructors created in an object will fail

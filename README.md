@@ -7,13 +7,13 @@ Supported type checks:
 * all is_ functions (is_real, is_array, is_string etc)
 
 
-# When and why to use?
+## When and why to use?
 Type checking gets rid of the worst bugs by stopping any buggy code right where the bug occurs. For example if you made a typo in your code some days ago and have been working on unrelated things, but then find an undefined variable showing up in a random place, there is no simple way to know what caused it. Many functions handle undefined values just fine (e.g. a list, grid set instead of a multiplication) and the source of a bug can hence be hard to track down.
 
 The aim of Typed GML is to solve that by letting the programmer assert inputs and outputs. This is especially useful when dealing with unknown data, large data pipelines, networking or any other complex example. For release mode, type assertions can be turned off by modifying a global macro.
 
 
-# Example Usage
+### Example Usage
 ```JavaScript
 globalvar Entity;
 Entity = function(_name, _instance) constructor {
@@ -67,7 +67,7 @@ var _struct = new Struct(new Entity("name"), new Vec2(0.0, 0.0));
 var _struct = new Struct(new Entity("name"), new Entity("name"));
 ```
 
-# Performance
+## Performance
 The project has performance and unit tests. These were run on a mac and performance may differ between platforms. If someone has another platform to test this on and send the results as an issue, it would be helpful.
 
 ```

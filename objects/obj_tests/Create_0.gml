@@ -1,7 +1,8 @@
 
 
 
-// Units Tests
+// Unit Tests
+
 log()
 log("RUNNING TESTS:")
 
@@ -74,6 +75,7 @@ var tests = [
 
 
 successful_tests = 0;
+
 for(var i = 0; i < array_length(tests); i++){
 	var _args = tests[i]
 	var _fun = _args[0];
@@ -137,10 +139,7 @@ test_grid = ds_grid_create(1, 1);
 array = array_create(10, 5);
 anonymous_function = function() {}
 
-// Establish baseline that comes from a function call
-_baseline = new PerformanceTest("", [function(){
-	var _;
-}]).run(20000)[0];
+
 
 log("RUNNING PERFORMANCE TESTS")
 
@@ -187,6 +186,24 @@ var _performance_tests = [
 		]
 	),
 	new PerformanceTest(
+		"for comparison, a ds_map_create and destroy",
+		[
+			function() {
+				var _ = ds_map_create();
+				ds_map_destroy(_);
+			}
+		]
+	),
+	new PerformanceTest(
+		"for comparison, an instance_create and destroy",
+		[
+			function() {
+				var _ = instance_create_depth(0, 0, 0, obj_simple);
+				instance_destroy(_);
+			}
+		]
+	),
+	new PerformanceTest(
 		"for comparison, a ds_map lookup",
 		[
 			function() {
@@ -198,7 +215,7 @@ var _performance_tests = [
 		"for comparison, a ds_grid write",
 		[
 			function() {
-				var _ = test_grid[# 0, 0] = 0;
+				test_grid[# 0, 0] = 0;
 			}
 		]
 	),
@@ -206,26 +223,7 @@ var _performance_tests = [
 		"for comparison, a ds_map write",
 		[
 			function() {
-				
 				var _ = test_map[? 0 ];
-			}
-		]
-	),
-	new PerformanceTest(
-		"for comparison, array read without accessor",
-		[
-			function() {
-				
-				var _ = array[ 0 ]
-			}
-		]
-	),
-	new PerformanceTest(
-		"for comparison, array read with accessor",
-		[
-			function() {
-				
-				var _ = array[@ 0 ];
 			}
 		]
 	),
@@ -246,7 +244,7 @@ array_for_each(_performance_tests, function(_test) {
 	log("TEST:", _test.title, "running", _steps, "times");
 	
 	array_for_each(_results, function(_result, i) {
-		log(i, "took", (_result - _baseline) * 1000000, "microseconds per one run");
+		log(i, "took", (_result) * 1000000, "microseconds per one run");
 	});
 	
 	
@@ -256,7 +254,7 @@ array_for_each(_performance_tests, function(_test) {
 	
 		log("extra time from type assertions: ", 
 			((_max) - (_min)) * 1000000, 
-			"microseconds per one assertion");
+			"microseconds per one run");
 	}
 	
 	log();

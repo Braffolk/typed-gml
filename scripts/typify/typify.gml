@@ -11,11 +11,18 @@ function is_instance_of(_instance, _object_index) {
 
 
 function is_struct_of_type(_struct, _type) {
-	var _index_struct = asset_get_index(instanceof(_struct)) - 100000;
-	var _index_type = (is_method(_type) ? method_get_index(_type) : _type) - 100000;
+	var _index_struct = asset_get_index(instanceof(_struct));
+	var _index_type = (is_method(_type) ? method_get_index(_type) : _type);
 	return _index_struct == _index_type;
 }
 
+function is_array_of(_array, _function) {
+	if(array_length(_array) == 0){
+		return true;
+	} else {
+		return _function(_array[0]);
+	}
+}
 
 function assert_types() {
 	for(var i = 0; i < argument_count; i++) {

@@ -1,11 +1,7 @@
 
 
 
-log("@@@@")
-
-
-
-
+// Units Tests
 log()
 log("RUNNING TESTS:")
 
@@ -110,7 +106,110 @@ log();
 
 
 
+
+// Performance tests
+struct_real = function(_val) constructor {
+	
+}
+struct_real_typed = function(_val) constructor {
+	assert_types(is_real(_val))
+}
+
+struct_vec2 = function(_val) constructor {
+	
+}
+struct_vec2_typed = function(_val) constructor {
+	assert_types([_val, Vec2]);
+}
+
+// testing data
+vec2 = new Vec2(0, 0);
+test_map = ds_map_create()
+test_map[? 0 ] = 0;
+test_grid = ds_grid_create(1, 1);
+
+
 log("RUNNING PERFORMANCE TESTS")
+var _performance_tests = [
+	new PerformanceTest(
+		"assert a real variable",
+		[
+			function() {
+				var _ = new struct_real(1);
+			},
+			function() {
+				var _ = new struct_real_typed(1);
+			}
+		]
+	),
+	new PerformanceTest(
+		"assert a vec2 struct type",
+		[
+			function() {
+				var _ = new struct_vec2(vec2);
+			},
+			function() {
+				var _ = new struct_vec2_typed(vec2);
+			}
+		]
+	),
+	new PerformanceTest(
+		"for comparison, a ds_grid lookup",
+		[
+			function() {
+				var _ = test_grid[# 0, 0 ];
+			}
+		]
+	),
+	new PerformanceTest(
+		"for comparison, a ds_map lookup",
+		[
+			function() {
+				var _ = test_map[? 0 ];
+			}
+		]
+	),
+	new PerformanceTest(
+		"for comparison, a ds_grid write",
+		[
+			function() {
+				var _ = test_grid[# 0, 0] = 0;
+			}
+		]
+	),
+	new PerformanceTest(
+		"for comparison, a ds_map write",
+		[
+			function() {
+				
+				var _ = test_map[? 0 ];
+			}
+		]
+	)
+];
+
+array_for_each(_performance_tests, function(_test) {
+	var _steps = 20000;
+	var _results = _test.run(_steps);
+	
+	log("TEST:", _test.title, "running", _steps, "times");
+	
+	array_for_each(_results, function(_result, i) {
+		log(i, "took", _result * 1000000, "microseconds per one run");
+	});
+	
+	
+	if(array_length(_results) > 1) {
+		var _min = array_reduce(_results, function(_l, _r, i) { return min(_l, _r) }, 10000);
+		var _max = array_reduce(_results, function(_l, _r, i) { return max(_l, _r) }, 0);
+	
+		log("extra time from type assertions: ", 
+			(_max - _min) * 1000000, 
+			"microseconds per one assertion");
+	}
+	
+	log();
+});
 
 
 log()

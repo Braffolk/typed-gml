@@ -96,3 +96,9 @@ for(var i = 0; i < array_length(tests); i++){
 
 log(successful_tests, "/", array_length(tests), "TESTS WERE SUCCESSFUL");
 log();
+
+
+log("RUNNING PERFORMANCE TESTS")
+
+
+log()

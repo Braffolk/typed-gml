@@ -10,7 +10,7 @@ Supported type checks:
 ## When and why to use?
 Type checking gets rid of the worst bugs by stopping any buggy code right where the bug occurs. For example if you made a typo in your code some days ago and have been working on unrelated things, but then find an undefined variable showing up in a random place, there is no simple way to know what caused it. Many functions handle undefined values just fine (e.g. a list, grid set instead of a multiplication) and the source of a bug can hence be hard to track down.
 
-The aim of Typed GML is to solve that by letting the programmer assert inputs and outputs. This is especially useful when dealing with unknown data, large data pipelines, networking or any other more complex application. For release mode, type assertions can be turned off by modifying a global macro.
+The aim of Typed GML is to solve that by letting the programmer assert input and output types. This is especially useful when dealing with unknown data, large data pipelines, networking or any other more complex application. For release mode, type assertions can be turned off by modifying a global macro.
 
 
 ### Example Usage
@@ -69,44 +69,44 @@ Type assertions can be turned off via a macro for release mode.
 ### Mac, VM (Macbook Pro 2015)
 ```
 RUNNING PERFORMANCE TESTS 
-TEST: assert a real variable running 100000 times 
-0 took 251.53 microseconds per one run 
-1 took 260.75 microseconds per one run 
-extra time from type assertions:  9.22 microseconds per one run 
+TEST: assert a real variable , running 25000 times 
+0 took 87.29 microseconds per one run, ops per step (60fps): 191 
+1 took 101.55 microseconds per one run, ops per step (60fps): 164 
+extra time from type assertions:  14.26 microseconds per one run, ops per step (60fps): 1169 
 
-TEST: assert 4 real type variables running 100000 times 
-0 took 237.11 microseconds per one run 
-1 took 255.37 microseconds per one run 
-extra time from type assertions:  18.27 microseconds per one run 
+TEST: assert 4 real type variables , running 25000 times 
+0 took 76.19 microseconds per one run, ops per step (60fps): 219 
+1 took 102.55 microseconds per one run, ops per step (60fps): 163 
+extra time from type assertions:  26.36 microseconds per one run, ops per step (60fps): 632 
 
-TEST: assert 16 real type variables running 100000 times 
-0 took 249.86 microseconds per one run 
-1 took 308.17 microseconds per one run 
-extra time from type assertions:  58.30 microseconds per one run 
+TEST: assert 16 real type variables , running 25000 times 
+0 took 67.67 microseconds per one run, ops per step (60fps): 246 
+1 took 127.75 microseconds per one run, ops per step (60fps): 130 
+extra time from type assertions:  60.08 microseconds per one run, ops per step (60fps): 277 
 
-TEST: assert a vec2 struct type running 100000 times 
-0 took 256.12 microseconds per one run 
-1 took 277.68 microseconds per one run 
-extra time from type assertions:  21.56 microseconds per one run 
+TEST: assert a vec2 struct type , running 25000 times 
+0 took 64.13 microseconds per one run, ops per step (60fps): 260 
+1 took 78.78 microseconds per one run, ops per step (60fps): 212 
+extra time from type assertions:  14.65 microseconds per one run, ops per step (60fps): 1138 
 
-TEST: for comparison, a ds_grid lookup running 100000 times 
-0 took 0.72 microseconds per one run 
+TEST: for comparison, a ds_grid lookup , running 25000 times 
+0 took 0.62 microseconds per one run, ops per step (60fps): 26918 
 
-TEST: for comparison, a ds_map_create and destroy running 100000 times 
-0 took 3.83 microseconds per one run 
+TEST: for comparison, a ds_map_create and destroy , running 25000 times 
+0 took 4.13 microseconds per one run, ops per step (60fps): 4039 
 
-TEST: for comparison, an instance_create and destroy running 100000 times 
-0 took 146.73 microseconds per one run 
+TEST: for comparison, an instance_create and destroy , running 25000 times 
+0 took 46.02 microseconds per one run, ops per step (60fps): 362 
 
-TEST: for comparison, a ds_map lookup running 100000 times 
-0 took 0.55 microseconds per one run 
+TEST: for comparison, a ds_map lookup , running 25000 times 
+0 took 0.80 microseconds per one run, ops per step (60fps): 20787 
 
-TEST: for comparison, a ds_grid write running 100000 times 
-0 took 0.20 microseconds per one run 
+TEST: for comparison, a ds_grid write , running 25000 times 
+0 took 0.15 microseconds per one run, ops per step (60fps): 112067 
 
-TEST: for comparison, a ds_map write running 100000 times 
-0 took 0.64 microseconds per one run 
+TEST: for comparison, a ds_map write , running 25000 times 
+0 took 0.79 microseconds per one run, ops per step (60fps): 20989 
 
-TEST: for comparison, an anonymous function call running 100000 times 
-0 took 0.83 microseconds per one run 
+TEST: for comparison, an anonymous function call , running 25000 times 
+0 took 0.89 microseconds per one run, ops per step (60fps): 18663 
 ```

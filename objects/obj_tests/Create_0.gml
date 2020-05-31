@@ -287,10 +287,10 @@ array_for_each(_performance_tests, function(_test) {
 	var _steps = 10000;
 	var _results = _test.run(_steps);
 	
-	log("TEST:", _test.title, "running", _steps, "times");
+	log("TEST:", _test.title, ", running", _steps, "times");
 	
 	array_for_each(_results, function(_result, i) {
-		log(i, "took", (_result), "microseconds per one run");
+		log(i, "took", (_result), "microseconds per one run, ops/sec:", 1000000/_result);
 	});
 	
 	
@@ -300,7 +300,8 @@ array_for_each(_performance_tests, function(_test) {
 	
 		log("extra time from type assertions: ", 
 			((_max) - (_min)), 
-			"microseconds per one run");
+			"microseconds per one run, ops/sec:",
+			1000000/(_max-_min));
 	}
 	
 	log();

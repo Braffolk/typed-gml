@@ -81,17 +81,17 @@ global.__type_names[Types.Nan] = "NaN";
 global.__type_names[Types.Infinity] = "infinity";
 
 
-function t_struct_of(_struct, _type) constructor { return [Types.StructOf, _struct, _type]; }
-function t_array_of(_array, _items_type) constructor { return [Types.ArrayOf, _array, _items_type]; }
-function t_instance_of(_instance, _type) constructor { return [Types.InstanceOf, _instance, _type]; }
-function t_string(_value) constructor { return [Types.String, _value]; }
-function t_real(_value) constructor { return [Types.Real, _value]; }
-function t_numeric(_value) constructor { return [Types.Numeric, _value]; }
-function t_bool(_value) constructor { return [Types.Bool, _value]; }
-function t_array(_value) constructor { return [Types.Array, _value]; }
-function t_struct(_value) constructor { return [Types.Struct, _value]; }
-function t_method(_value) constructor { return [Types.Method, _value]; }
-function t_ptr(_value) constructor { return [Types.Ptr, _value]; }
+function t_struct_of(_struct, _type) constructor		{ return [Types.StructOf, _struct, _type]; }
+function t_array_of(_array, _items_type) constructor	{ return [Types.ArrayOf, _array, _items_type]; }
+function t_instance_of(_instance, _type) constructor	{ return [Types.InstanceOf, _instance, _type]; }
+function t_string(_value) constructor					{ return [Types.String, _value]; }
+function t_real(_value) constructor						{ return [Types.Real, _value]; }
+function t_numeric(_value) constructor					{ return [Types.Numeric, _value]; }
+function t_bool(_value) constructor						{ return [Types.Bool, _value]; }
+function t_array(_value) constructor					{ return [Types.Array, _value]; }
+function t_struct(_value) constructor					{ return [Types.Struct, _value]; }
+function t_method(_value) constructor					{ return [Types.Method, _value]; }
+function t_ptr(_value) constructor						{ return [Types.Ptr, _value]; }
 
 
 global.__type_check_functions = array_create(Types.__size);
@@ -127,8 +127,24 @@ function assert_types() {
 			if(!_is_expected_type) {
 				var _expected_name = global.__type_names[_type_pars[0]];
 				var _found_name = value_type_name_fuzzy(_type_pars[1]);
+				var _err;
 				
-				throw("Wrong type at argument " + string(i) + ", expected " + _expected_name + " found " + _found_name);
+				if(array_length(_type_pars) > 2){
+					var _target_name;
+					if(_type_pars[0] == Types.InstanceOf) {
+						_target_name = object_get_name(_type_pars[2]);
+					} else {
+						_target_name = _type_pars[2];
+					}
+					
+					_err = ("Wrong type at argument " + string(i) + ", expected " + _expected_name + "'" +
+						string(_target_name) + 
+						"'" + " found " + _found_name);
+				} else {
+					_err = ("Wrong type at argument " + string(i) + ", expected '" + _expected_name + "' found " + _found_name);
+				}
+				
+				throw(_err);
 			}
 		}
 	//}

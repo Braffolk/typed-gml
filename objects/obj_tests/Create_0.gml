@@ -124,6 +124,20 @@ struct_real_4_arguments_typed = function(_1, _2, _3, _4) constructor {
 	assert_types(t_real(_1), t_real(_2), t_real(_3), t_real(_4))
 }
 
+struct_real_16_arguments = function(_1, _2, _3, _4, _5, _6, _7, _8, 
+										_9, _10, _11, _12, _13, _14, _15, _16) constructor {
+	
+}
+struct_real_16_arguments_typed = function(_1, _2, _3, _4, _5, _6, _7, _8, 
+										_9, _10, _11, _12, _13, _14, _15, _16) constructor {
+	assert_types(
+		t_real(_1), t_real(_2), t_real(_3), t_real(_4),
+		t_real(_5), t_real(_6), t_real(_7), t_real(_8),
+		t_real(_9), t_real(_10), t_real(_11), t_real(_12),
+		t_real(_13), t_real(_14), t_real(_15), t_real(_16)
+	)
+}
+
 struct_vec2 = function(_val) constructor {
 	
 }
@@ -135,11 +149,12 @@ struct_vec2_typed = function(_val) constructor {
 vec2 = new Vec2(0, 0);
 test_map = ds_map_create()
 test_map[? 0 ] = 0;
-test_grid = ds_grid_create(1, 1);
+test_grid = ds_grid_create(16, 16);
 array = array_create(10, 5);
+array_2d = array_create(10, [1, 2, 3])
 anonymous_function = function() {}
 
-
+lookup_index = 0;
 
 log("RUNNING PERFORMANCE TESTS")
 
@@ -163,6 +178,17 @@ var _performance_tests = [
 			},
 			function() {
 				var _ = new struct_real_4_arguments_typed(1, 1, 1, 1);
+			}
+		]
+	),
+	new PerformanceTest(
+		"assert 16 real type variables",
+		[
+			function() {
+				var _ = new struct_real_16_arguments(1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4);
+			},
+			function() {
+				var _ = new struct_real_16_arguments_typed(1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4);
 			}
 		]
 	),
@@ -234,8 +260,28 @@ var _performance_tests = [
 				var _ = anonymous_function();
 			}
 		]
+	),
+	new PerformanceTest(
+		"fasdf",
+		[
+			function() {
+				return [1, 2, 3];
+			},
+			function() {
+				lookup_index = 0;
+			},
+			function() {
+				var _ = array_2d[lookup_index]
+				_[0] = 1;
+				_[1] = 2;
+				_[2] = 3;
+				lookup_index++;
+				return _
+			}
+		]
 	)
 ];
+
 
 array_for_each(_performance_tests, function(_test) {
 	var _steps = 10000;
@@ -244,16 +290,16 @@ array_for_each(_performance_tests, function(_test) {
 	log("TEST:", _test.title, "running", _steps, "times");
 	
 	array_for_each(_results, function(_result, i) {
-		log(i, "took", (_result) * 1000000, "microseconds per one run");
+		log(i, "took", (_result), "microseconds per one run");
 	});
 	
 	
 	if(array_length(_results) > 1) {
-		var _min = array_reduce(_results, function(_l, _r, i) { return min(_l, _r) }, 10000);
+		var _min = array_reduce(_results, function(_l, _r, i) { return min(_l, _r) }, 1000000000000);
 		var _max = array_reduce(_results, function(_l, _r, i) { return max(_l, _r) }, 0);
 	
 		log("extra time from type assertions: ", 
-			((_max) - (_min)) * 1000000, 
+			((_max) - (_min)), 
 			"microseconds per one run");
 	}
 	

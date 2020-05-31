@@ -3,6 +3,8 @@
 
 
 function is_instance_of(_instance, _object_index) {
+	/// @description	
+	
 	if(instance_exists(_instance)) {
 		with(_instance) {
 			return object_index == _object_index;
@@ -79,7 +81,6 @@ global.__type_names[Types.Nan] = "NaN";
 global.__type_names[Types.Infinity] = "infinity";
 
 
-
 function t_struct_of(_struct, _type) constructor { return [Types.StructOf, _struct, _type]; }
 function t_array_of(_array, _items_type) constructor { return [Types.ArrayOf, _array, _items_type]; }
 function t_instance_of(_instance, _type) constructor { return [Types.InstanceOf, _instance, _type]; }
@@ -117,7 +118,7 @@ function value_type_name_fuzzy(_value) {
 }
 
 function assert_types() {
-	if(ASSERT_TYPES){
+	//if(ASSERT_TYPES){
 		for(var i = 0; i < argument_count; i++) {
 			var _type_pars = argument[i];
 			var _check_function = global.__type_check_functions[_type_pars[0]];
@@ -130,7 +131,7 @@ function assert_types() {
 				throw("Wrong type at argument " + string(i) + ", expected " + _expected_name + " found " + _found_name);
 			}
 		}
-	}
+	//}
 }
 
 

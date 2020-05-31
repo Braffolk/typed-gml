@@ -34,7 +34,7 @@ function PerformanceTest(_title, _methods) constructor {
 				_time = get_timer();
 				_method();
 				_time = get_timer() - _time - _time_baseline;
-				_results[j] += _time / 1000000;
+				_results[j] += _time;
 			}
 		}
 		

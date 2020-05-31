@@ -72,25 +72,39 @@ The project has performance and unit tests. These were run on a mac and performa
 
 ```
 RUNNING PERFORMANCE TESTS 
-TEST: assert a real variable running 20000 time 
-0 took 45.44 microseconds per one run 
-1 took 47.90 microseconds per one run 
-extra time from type assertions:  2.47 microseconds per one assertion 
-
-TEST: assert a vec2 struct type running 20000 time 
-0 took 42.28 microseconds per one run 
-1 took 48.35 microseconds per one run 
+TEST: assert a real variable running 10000 times 
+0 took 23.65 microseconds per one run 
+1 took 29.72 microseconds per one run 
 extra time from type assertions:  6.07 microseconds per one assertion 
 
-TEST: for comparison, a ds_grid lookup running 20000 time 
-0 took 1.00 microseconds per one run 
+TEST: assert 4 real type variables running 10000 times 
+0 took 20.39 microseconds per one run 
+1 took 28.95 microseconds per one run 
+extra time from type assertions:  8.55 microseconds per one assertion 
 
-TEST: for comparison, a ds_map lookup running 20000 time 
-0 took 1.45 microseconds per one run 
+TEST: assert a vec2 struct type running 10000 times 
+0 took 20.53 microseconds per one run 
+1 took 26.81 microseconds per one run 
+extra time from type assertions:  6.28 microseconds per one assertion 
 
-TEST: for comparison, a ds_grid write running 20000 time 
-0 took 1.12 microseconds per one run 
+TEST: for comparison, a ds_grid lookup running 10000 times 
+0 took 0.73 microseconds per one run 
 
-TEST: for comparison, a ds_map write running 20000 time 
-0 took 1.15 microseconds per one run 
+TEST: for comparison, a ds_map lookup running 10000 times 
+0 took 0.70 microseconds per one run 
+
+TEST: for comparison, a ds_grid write running 10000 times 
+0 took 0.74 microseconds per one run 
+
+TEST: for comparison, a ds_map write running 10000 times 
+0 took 0.54 microseconds per one run 
+
+TEST: for comparison, array read without accessor running 10000 times 
+0 took 0.38 microseconds per one run 
+
+TEST: for comparison, array read with accessor running 10000 times 
+0 took 0.46 microseconds per one run 
+
+TEST: for comparison, an anonymous function call running 10000 times 
+0 took 0.63 microseconds per one run 
 ```

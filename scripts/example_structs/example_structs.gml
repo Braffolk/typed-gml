@@ -1,6 +1,5 @@
 globalvar Entity;
 Entity = function(_name, _instance) constructor {
-	static _ = typify(self);
 	assert_types(is_string(_name));
 	
 	name = _name;
@@ -8,14 +7,12 @@ Entity = function(_name, _instance) constructor {
 }
 
 function SimpleStorer(_instance) constructor {
-	static _ = typify(self);
 	assert_types(is_instance_of(_instance, obj_simple));
 	
 	instance = _instance
 }
 
 function Vec2(_x, _y) constructor {
-	static _ = typify(self);
 	assert_types(is_real(_x), is_real(_y));
 	
 	x = _x;
@@ -31,7 +28,6 @@ function Vec2(_x, _y) constructor {
 
 globalvar Struct;
 Struct = function(_entity, _vector) constructor {
-	static _ = typify(self);
 	assert_types([_entity, Entity], [_vector, Vec2]);
 	
 	entity = _entity;

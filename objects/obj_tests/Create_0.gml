@@ -1,4 +1,21 @@
 
+
+
+log("@@@@")
+
+var a = array_create(1, 5)
+
+log(is_struct(is_undefined))
+log(is_method(is_undefined))
+
+log(is_struct(Struct))
+log(is_method(Struct))
+
+log(asset_get_type(is_undefined))
+log((obj_tests))
+
+
+
 log()
 log("RUNNING TESTS:")
 
